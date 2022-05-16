@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :events
+  resources :encounters
   require 'sidekiq/web'
 
   scope :monitoring do
@@ -25,6 +27,12 @@ Rails.application.routes.draw do
         get :me
         post :create
       end
+      #localhost:3000/api/v1/encounters/my_encounters
+      namespace :encounter do
+        get :my_encounters
+      end
+      resources :encounters
+      resources :events
     end
   end
 end
