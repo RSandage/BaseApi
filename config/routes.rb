@@ -28,7 +28,7 @@ Rails.application.routes.draw do
         post :create
       end
       #localhost:3000/api/v1/encounters/my_encounters
-      namespace :encounter do
+      namespace :encounters do
         get :my_encounters
       end
       resources :encounters

@@ -3,6 +3,7 @@ module Api
     class EncountersController < Api::V1::ApplicationController
       #POST /api/v1/encounters
       def create
+        
         result = Encounters.new_encounter(encounter_params, @current_user)
         render_error(errors: "There was a problem creating a new encounter", status: 400) and return unless result.success?
         payload = {
