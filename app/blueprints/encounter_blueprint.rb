@@ -1,6 +1,6 @@
 class EncounterBlueprint < Blueprinter::Base
   identifier :id
-  fields :title, :public
+  fields :title, :status
 
   view :normal do
     fields :created_at, :updated_at

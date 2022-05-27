@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       #localhost:3000/api/v1/encounters/my_encounters
       namespace :encounters do
         get :my_encounters
+        get :public_encounters
       end
       resources :encounters
       resources :events

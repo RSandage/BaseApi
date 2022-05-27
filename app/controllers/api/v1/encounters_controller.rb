@@ -32,11 +32,22 @@ module Api
       #GET
       #user encounters - get current user encounters
       def my_encounters
+        render_success(payload: EncounterBlueprint.render_as_hash(@current_user.encounters))
+      end
+
+      #GET /api/v1
+      #public encounters - get all encounters where public = true
+      def public_encounters
+        render_success(payload: EncounterBlueprint.render_as_hash(get_public))
       end
 
       private
         def encounter_params
           params.require(:encounter).permit(:title, :public)
+        end
+
+        def get_public
+          Encounter.where(status: "pub")
         end
     end
   end

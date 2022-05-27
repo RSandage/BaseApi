@@ -1,6 +1,5 @@
 module Encounters
   def self.new_encounter(params, current_user)
-    byebug
     encounter = current_user.encounters.new(params)
     return ServiceContract.error("Error saving the encounter") unless encounter.save
     ServiceContract.success(encounter)
