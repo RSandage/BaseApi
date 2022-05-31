@@ -23,14 +23,23 @@ module Api
 
       #DELETE /api/v1/events:id
       def delete
-        result = Events.destroy_event(event_id, current_encounter)
+        result = Events.destroy_event(event_id, @current_encounter)
         render_error(errors: "There was a problem deleting the event", status: 400) and return unless result.success?
         render_success(payload: nil)
       end
 
+      #GET /api/v1/events
+      def encounter_events
+        render_success(payload: EventBlueprint.render_as_hash(get_encounter_events))
+
+
       private
         def event_params
           params.require(:event).permit(:name, :description)
+        end
+
+        def get_encounter_events
+          Events.where(encounter_id: @current_encounter.id)
         end
     end
   end
